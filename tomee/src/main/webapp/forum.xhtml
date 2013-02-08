@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+</h:head>
+
+<h:body>
+	<f:view>
+	<h1>TomEE Demo Forum</h1>
+		<h:form>
+		<p:dataList var="entry" value="#{forumBean.entries}" type="none">
+			<p:fieldset legend="#{entry.title}">
+				<h:outputText value="#{entry.creationDate}"><f:convertDateTime pattern="dd.MM.yyyy HH:mm" /></h:outputText> von <h:outputText value="#{entry.contributor}" /><br />
+				<h:outputText value="#{entry.content}" />
+			</p:fieldset>
+			<br></br>
+		</p:dataList>
+		
+		
+		<br></br>
+		
+		<p:fieldset legend="Neuer Eintrag">
+			<table>
+			
+				<tr>
+					<td><h:outputLabel value="Benutzer" for="user" /></td>
+					<td><h:inputText id="user" value="#{forumBean.newEntry.contributor}" /></td>	
+				</tr>
+				<tr>
+					<td><h:outputLabel value="Titel" for="title"/></td>
+					<td><h:inputText id="title" value="#{forumBean.newEntry.title}"/></td>	
+				</tr>
+				<tr>
+					<td><h:outputLabel value="Text" for="text"/></td>
+					<td><h:inputTextarea id="text" value="#{forumBean.newEntry.content}" /></td>	
+				</tr>
+			
+			</table>
+		
+			<p:commandButton value="Abschicken" action="#{forumController.saveEntry}" ajax="false"></p:commandButton>
+			</p:fieldset>
+		</h:form>
+	
+	</f:view>
+</h:body>
+
+</html>
