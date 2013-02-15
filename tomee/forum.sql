@@ -1,4 +1,9 @@
-create table forum.FORUM_ENTRY(
+CREATE DATABASE  IF NOT EXISTS `forum`;
+USE `forum`;
+
+DROP TABLE IF EXISTS `forum_entry`;
+
+create table forum_entry(
 fen_id BIGINT AUTO_INCREMENT NOT NULL UNIQUE,
 fen_contributor varchar(256),
 fen_title varchar(256),
