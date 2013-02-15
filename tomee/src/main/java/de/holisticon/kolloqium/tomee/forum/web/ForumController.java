@@ -10,33 +10,28 @@ import javax.inject.Inject;
 import de.holisticon.kolloqium.tomee.forum.ejb.IForumEntryBeanLocal;
 import de.holisticon.kolloqium.tomee.forum.entities.ForumEntry;
 
-
 @ManagedBean
 @RequestScoped
 public class ForumController {
 
-	@ManagedProperty(value="#{forumBean}")
-	private ForumBean forumBean;
+    @ManagedProperty(value = "#{forumBean}")
+    private ForumBean forumBean;
 
-	@Inject
-	private IForumEntryBeanLocal forumEntryBean;
+    @Inject
+    private IForumEntryBeanLocal forumEntryBean;
 
-	public String saveEntry() {
+    public String saveEntry() {
 
-		final ForumEntry forumEntry = this.forumBean.getNewEntry();
-		forumEntry.setCreationDate(Calendar.getInstance().getTime());
-		this.forumEntryBean.addForumEntry(forumEntry);
+        final ForumEntry forumEntry = forumBean.getNewEntry();
+        forumEntry.setCreationDate(Calendar.getInstance().getTime());
+        forumEntryBean.addForumEntry(forumEntry);
 
-		// reset new entry bean
-		this.forumBean.resetNewEntry();
+        // reset new entry bean
+        forumBean.resetNewEntry();
 
-		// trigger reload of Entries
+        // trigger reload of Entries
 
-		return "forum";
-	}
-
-	public void setForumBean(final ForumBean forumBean) {
-		this.forumBean = forumBean;
-	}
+        return "forum";
+    }
 
 }
